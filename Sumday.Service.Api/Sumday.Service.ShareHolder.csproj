@@ -1,0 +1,39 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5</TargetFramework>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <CodeAnalysisRuleSet>..\..\stylecop.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <AdditionalFiles Include="..\..\stylecop.json" Link="stylecop.json" />
+    <Content Include="..\Configuration\**\*.*">
+      <Link>Configuration\%(RecursiveDir)%(Filename)%(Extension)</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Update="..\Configuration\secrets.json">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.5" NoWarn="NU1605" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="5.0.5" NoWarn="NU1605" />
+    <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="5.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="5.0.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.1.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Sumday.BoundedContext.ShareHolder\Sumday.BoundedContext.ShareHolder.csproj" />
+    <ProjectReference Include="..\Sumday.infrastructure.Common\Sumday.Infrastructure.Common.csproj" />
+    <ProjectReference Include="..\Sumday.Infrastructure.Surpas.ShareHolder\Sumday.Infrastructure.Surpas.ShareHolder.csproj" />
+    <ProjectReference Include="..\Sumday.Infrastructure.Surpas\Sumday.Infrastructure.Surpas.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Payees\ViewModels\" />
+  </ItemGroup>
+
+</Project>
